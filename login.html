@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | FreshMart</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>Login to FreshMart</h2>
+
+    <form id="loginForm">
+      <input type="text" id="name" placeholder="Full Name" required>
+
+      <input type="email" id="email" placeholder="Email" required>
+
+      <input type="text" id="pincode" placeholder="Pincode" required>
+
+      <textarea id="address" placeholder="Delivery Address" required></textarea>
+
+      <button type="submit">Login</button>
+    </form>
+
+    <p id="errorMsg"></p>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>

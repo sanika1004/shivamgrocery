@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f5f5;
+        }
+
+        .profile-container {
+            width: 380px;
+            margin: 60px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+        }
+
+        input, textarea {
+            width: 90%;
+            padding: 8px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        textarea {
+            resize: none;
+            height: 60px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .saveBtn {
+            background: green;
+            color: white;
+        }
+
+        .logoutBtn {
+            background: red;
+            color: white;
+        }
+
+        .msg {
+            font-size: 14px;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="profile-container">
+    <h2>My Profile</h2>
+
+    <input type="text" id="name" placeholder="Name">
+    <input type="email" id="email" placeholder="Email">
+
+    <textarea id="address" placeholder="Enter Address"></textarea>
+    <input type="text" id="pincode" placeholder="Pincode">
+
+    <div class="msg" id="msg"></div>
+
+    <button class="saveBtn" onclick="saveProfile()">Save Changes</button>
+    <br><br>
+    <button class="logoutBtn" onclick="logout()">Logout</button>
+</div>
+
+<script>
+
+// Load user from localStorage
+let user = JSON.parse(localStorage.getItem("user")) || {};
+
+// Load existing profile data
+function loadProfile() {
+
+    if (!localStorage.getItem("user")) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    document.getElementById("name").value = user.name || "";
+    document.getElementById("email").value = user.email || "";
+    document.getElementById("address").value = user.address || "";
+    document.getElementById("pincode").value = user.pincode || "";
+}
+
+// Save profile with pincode validation
+function saveProfile() {
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const pincode = document.getElementById("pincode").value.trim();
+    const msg = document.getElementById("msg");
+
+    const pin = Number(pincode);
+
+    // Validate pincode range
+    if (pin < 421201 || pin > 421205) {
+        msg.innerText = "Delivery available only for pin
